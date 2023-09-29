@@ -70,44 +70,65 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 
 ### QUERY:
 
+CREATE VIEW details AS SELECT ENAME FROM EMP WHERE SALARY >(select SALARY from EMP where EMPNO=7566);
 
 ### OUTPUT:
+![WhatsApp Image 2023-09-29 at 22 00 47](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/e730fccf-8294-417e-94a8-b96e8ed2d372)
+
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
 
 ### QUERY:
 
+CREATE VIEW minimum AS select ENAME,JOB,SALARY from EMP where SALARY =(select MIN(SALARY) from EMP);
 
 ### OUTPUT:
+![WhatsApp Image 2023-09-29 at 22 01 20](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/d64b70a7-d9a3-4439-9d08-7a38e04e5367)
+
 
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
 
 ### QUERY:
 
+select ENAME,JOB from EMP where DEPTNO=10 AND JOB='SALESMAN';
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 01 55](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/725d476a-5760-492a-9d6c-7b0bf9be394f)
 
 
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 
 ### QUERY:
 
-
+create view empv5 as select EMPNO,ENMAE,JOB from EMP where DEPTNO=10;
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 02 26](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/55b5c098-fae6-4179-b8f3-3d47f23c8541)
+
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 
 ### QUERY:
 
+create view empv30 AS select EMPNO,ENAME,SALARY from EMP where DEPTNO=30;
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 02 57](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/96d2c5a9-cfb9-45e5-9cf4-79b2eaba47f8)
+
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
 
 ### QUERY:
 
+update EMP set SALARY=SALARY*1.1 WHERE JOB='clerk';
+create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 03 27](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/b8fee5a0-1559-4d51-93cb-a77f898788b4)
+
 
 ## Create a Customer1 Table
 ```sql
@@ -141,27 +162,51 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 
 ### QUERY:
 
+select s.name,c.cust_name,s.city from salesman1 as s,customer1 as c where s.city=c.city;
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 05 40](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/cdb2d671-999e-4eb8-8510-59478bdfa411)
+
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
 
 
 ### QUERY:
 
+select s.name,c.cust_name,s.city,s.commission from salesman1 as s inner join customer1 as c on s.city where s.commission>0.13;
+
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 09 08](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/5fa14e8e-f14c-4276-a078-b243aeaec8d8)
+
 
 ### Q9) Perform Natural join on both tables
 
 ### QUERY:
 
+select s.name,c.cust_name,s.city,s.commission from salesman1 as s natural join customer1 as c where s.commission>0.13;
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 07 53](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/63caf8f3-4f59-4229-87d4-0e474aedd383)
+
 
 ### Q10) Perform Left and right join on both tables
 
 ### QUERY:
 
+select s.name,c.cust_name,s.city,s.commission from salesman1 as s left join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
+select s.name,c.cust_name,s.city,s.commission from salesman1 as s right join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
+
+
+
 
 ### OUTPUT:
+
+![WhatsApp Image 2023-09-29 at 22 08 26](https://github.com/niraunjana/EX-3-SubQueries-Views-and-Joins/assets/119395610/d8e554d1-7f06-4038-9051-889c8bc81ae7)
+
+
+### RESULT :
+Hence successfully created a manager database and executed views and joins using SQL.
