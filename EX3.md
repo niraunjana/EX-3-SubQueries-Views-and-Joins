@@ -1,5 +1,9 @@
 # EX 3 SubQueries, Views and Joins 
 
+### AIM :
+
+To create views and joins in SQL
+
 
 ## Create employee Table
 ```sql
